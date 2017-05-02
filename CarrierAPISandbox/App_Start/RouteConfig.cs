@@ -14,6 +14,13 @@ namespace CarrierAPISandbox
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "FedExTracking",
+                url: "FedEx/Track/{trackingNumber}",
+                defaults: new { controller = "FedEx", action = "Track"},
+                constraints: new { trackingNumber = @"\d{12-14}" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
